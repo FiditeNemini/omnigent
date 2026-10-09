@@ -150,7 +150,8 @@ a separate action that leaves the session connected.
 **Side-chat lifecycle:** use **Workspace → + → Side chat**, type `/side` in the
 parent composer, or choose **Start a new side chat** from the composer's add
 tray. Selecting assistant text also offers **Ask in side chat**. On mobile,
-side chats open in a drawer. A generic hosted parent can start a new side chat
+side chats open in a drawer; the header's **Conversation actions → Side
+chats** reopens it. A generic hosted parent can start a new side chat
 after stopping; this relaunches the parent and both use one runner. Close a side
 chat with its tab's close button; the parent and sibling chats keep running. A
 chat-only side chat can also send messages from its direct `/c/<child_id>` URL
@@ -414,6 +415,10 @@ plain `uv run pytest`, which starts a private server for the test.
   Hostless CLI Stop keeps its existing per-conversation behavior.
 - Starting a side chat after its parent stopped relaunches the parent. The new
   chat shares that replacement runner and stops with the parent again.
+- A phone-width browser run does not prove the mobile side-chat drawer in the
+  embedded web app or the native apps. Both style the drawer only inside the
+  app's own page area: placed outside it, the drawer stays off screen when
+  embedded and sits under the status bar in the native apps.
 - Canvas is feature-gated, including conversation deep links. Its browser
   tests enable that flag explicitly; they do not enable it on a deployed app.
 - Canvas entry collapses navigation once. Selecting another card must not
