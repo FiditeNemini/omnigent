@@ -90,6 +90,21 @@ describe("sandboxProviderOptions", () => {
 });
 
 describe("resolveServerInfo sandbox_providers", () => {
+  it.each([undefined, null, "", "manage", 2, true])(
+    "defaults an absent or invalid public ceiling %s to Read",
+    async (value) => {
+      expect((await probe({ public_sharing_max_level: value })).public_sharing_max_level).toBe(
+        "read",
+      );
+    },
+  );
+
+  it("recognizes an explicit public Edit ceiling", async () => {
+    expect((await probe({ public_sharing_max_level: "edit" })).public_sharing_max_level).toBe(
+      "edit",
+    );
+  });
+
   it("keeps the provider list from the probe", async () => {
     // Regression: the probe rebuilds ServerInfo field by field, so a
     // forgotten field is dropped before any component sees it.
